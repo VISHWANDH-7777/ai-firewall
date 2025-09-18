@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+}
+
+h1 {
+    color: #38bdf8;
+    font-size: 2.5rem;
+}
+
+.controls button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#startBtn {
+    background-color: #10b981;
+    color: white;
+    margin-right: 10px;
+}
+
+#startBtn:hover {
+    background-color: #059669;
+}
+
+#stopBtn {
+    background-color: #ef4444;
+    color: white;
+}
+
+#stopBtn:hover {
+    background-color: #dc2626;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.stats-panel,
+.threats-panel,
+.attack-panel,
+.traffic-panel {
+    background-color: #1e293b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.charts-panel {
+    grid-column: 1 / -1;
+    background-color: #1e293b;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+    height: 300px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.stat-card {
+    background-color: #334155;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.threats-list {
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.threat-item {
+    background-color: #334155;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.threat-info {
+    flex: 1;
+}
+
+.threat-type {
+    font-weight: bold;
+}
+
+.threat-source,
+.threat-target {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.threat-severity {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.severity-low {
+    background-color: #4ade80;
+    color: #14532d;
+}
+
+.severity-medium {
+    background-color: #facc15;
+    color: #713f12;
+}
+
+.severity-high {
+    background-color: #f97316;
+    color: #7c2d12;
+}
+
+.severity-critical {
+    background-color: #ef4444;
+    color: #7f1d1d;
+}
+
+.attack-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.attack-controls select,
+.attack-controls input {
+    padding: 10px;
+    border: 1px solid #334155;
+    border-radius: 5px;
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+.attack-controls button {
+    padding: 10px 20px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.attack-controls button:hover {
+    background-color: #dc2626;
+}
+
+.traffic-table-container {
+    margin-top: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.traffic-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.traffic-table th,
+.traffic-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+}
+
+.traffic-table th {
+    background-color: #334155;
+    position: sticky;
+    top: 0;
+}
+
+.traffic-table tr:hover {
+    background-color: #334155;
+}
+
+.traffic-threat {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.traffic-normal {
+    color: #10b981;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .attack-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.attack-monitor-btn {
+    padding: 10px 20px;
+    background-color: #f59e0b;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.attack-monitor-btn:hover {
+    background-color: #d97706;
+}

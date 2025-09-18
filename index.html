@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Firewall Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>AI-Powered Firewall Dashboard</h1>
+            <div class="controls">
+                <button id="startBtn">Start Monitoring</button>
+                <button id="stopBtn">Stop Monitoring</button>
+                <a href="/attack_monitor" class="attack-monitor-btn">Open Real-Time Attack Monitor</a>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <div class="stats-panel">
+                <h2>System Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Packets</h3>
+                        <p id="totalPackets">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Threats Detected</h3>
+                        <p id="threatsDetected">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Last Updated</h3>
+                        <p id="lastUpdated">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-panel">
+                <div class="chart-container">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+            </div>
+
+            <div class="threats-panel">
+                <h2>Recent Threats</h2>
+                <div class="threats-list" id="threatsList">
+                    <p>No threats detected yet</p>
+                </div>
+            </div>
+
+            <div class="attack-panel">
+                <h2>Launch Attack Simulation</h2>
+                <div class="attack-controls">
+                    <select id="attackType">
+                        <option value="ddos">DDoS Attack</option>
+                        <option value="port_scan">Port Scan</option>
+                        <option value="malware">Malware Activity</option>
+                    </select>
+                    <input type="text" id="targetIp" placeholder="Target IP" value="192.168.1.1">
+                    <button id="launchAttackBtn">Launch Attack</button>
+                </div>
+            </div>
+
+            <div class="traffic-panel">
+                <h2>Recent Network Traffic</h2>
+                <div class="traffic-table-container">
+                    <table class="traffic-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Source</th>
+                                <th>Destination</th>
+                                <th>Protocol</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="trafficTableBody">
+                            <tr>
+                                <td colspan="6">No traffic data yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

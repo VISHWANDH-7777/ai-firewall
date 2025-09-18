@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Attack Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .attack-monitor {
+            padding: 20px;
+            background: #0f172a;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .monitor-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #334155;
+        }
+
+        .monitor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .impact-visualization {
+            grid-column: 1 / -1;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            height: 300px;
+        }
+
+        .system-health,
+        .ai-status {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .health-metric {
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background: #334155;
+            height: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .load-fill {
+            background: #ef4444;
+        }
+
+        .health-fill {
+            background: #10b981;
+        }
+
+        .response-fill {
+            background: #3b82f6;
+        }
+
+        .attack-log {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            padding: 10px;
+            margin: 10px 0;
+            background: #334155;
+            border-radius: 5px;
+            border-left: 4px solid #475569;
+        }
+
+        .log-entry.threat {
+            border-left-color: #ef4444;
+        }
+
+        .log-entry.mitigation {
+            border-left-color: #10b981;
+        }
+
+        .log-entry.detection {
+            border-left-color: #3b82f6;
+        }
+
+        .log-time {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .log-message {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .attack-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .attack-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #ef4444;
+            color: white;
+        }
+
+        .attack-btn:hover {
+            background: #dc2626;
+        }
+
+        .mitigation-btn {
+            background: #10b981;
+        }
+
+        .mitigation-btn:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="attack-monitor">
+        <div class="monitor-header">
+            <h1>🚨 Real-Time Attack Impact Monitor</h1>
+            <p>Live visualization of cyber attacks and AI-powered defense</p>
+        </div>
+
+        <div class="attack-controls">
+            <button class="attack-btn" onclick="launchAttack('ddos')">Launch DDoS Attack</button>
+            <button class="attack-btn" onclick="launchAttack('port_scan')">Launch Port Scan</button>
+            <button class="attack-btn" onclick="launchAttack('malware')">Launch Malware Attack</button>
+            <button class="mitigation-btn" onclick="triggerAIMitigation()">Trigger AI Mitigation</button>
+        </div>
+
+        <div class="monitor-grid">
+            <div class="system-health">
+                <h2>📊 System Health</h2>
+                <div class="health-metric">
+                    <label>Server Load: <span id="serverLoad">0%</span></label>
+                    <div class="progress-bar">
+                        <div class="progress-fill load-fill" id="serverLoadBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="health-metric">
+                    <label>Response Time: <span id="responseTime">0ms</span></label>
+                    <div class="progress-bar">
+                        <div class="progress-fill response-fill" id="responseTimeBar" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="health-metric">
+                    <label>Health Score: <span id="healthScore">100%</span></label>
+                    <div class="progress-bar">
+                        <div class="progress-fill health-fill" id="healthScoreBar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="health-metric">
+                    <label>System Status: <span id="systemStatus" class="status-normal">NORMAL</span></label>
+                </div>
+            </div>
+
+            <div class="ai-status">
+                <h2>🤖 AI Defense Status</h2>
+                <div class="health-metric">
+                    <label>Detection Confidence: <span id="detectionConfidence">0%</span></label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="detectionBar" style="width: 0%; background: #3b82f6"></div>
+                    </div>
+                </div>
+                <div class="health-metric">
+                    <label>Mitigation Progress: <span id="mitigationProgress">0%</span></label>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="mitigationBar" style="width: 0%; background: #10b981"></div>
+                    </div>
+                </div>
+                <div class="health-metric">
+                    <label>Threats Detected: <span id="threatsDetected">0</span></label>
+                </div>
+                <div class="health-metric">
+                    <label>Attacks Blocked: <span id="attacksBlocked">0</span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact-visualization">
+            <canvas id="impactChart"></canvas>
+        </div>
+
+        <div class="attack-log">
+            <h2>📝 Attack & Defense Log</h2>
+            <div id="attackLog">
+                <div class="log-entry">
+                    <div class="log-time">System started</div>
+                    <div class="log-message">Monitoring initialized. Waiting for attacks...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/attack_monitor.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+DDOS
+
+// Low intensity DDoS
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'ddos',
+    target: '192.168.1.1',
+    intensity: 'low'
+  })
+})
+
+// Medium intensity DDoS
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'ddos',
+    target: '192.168.1.1',
+    intensity: 'medium'
+  })
+})
+
+// High intensity DDoS (your example)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'ddos',
+    target: '192.168.1.1',
+    intensity: 'high'
+  })
+})
+
+// Critical intensity DDoS
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'ddos',
+    target: '192.168.1.1',
+    intensity: 'critical'
+  })
+})
+
+Port scan
+// Low intensity Port Scan (stealth scan)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'port_scan',
+    target: '192.168.1.1',
+    intensity: 'low'
+  })
+})
+
+// Medium intensity Port Scan (standard scan)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'port_scan',
+    target: '192.168.1.1',
+    intensity: 'medium'
+  })
+})
+
+// High intensity Port Scan (aggressive scan)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'port_scan',
+    target: '192.168.1.1',
+    intensity: 'high'
+  })
+})
+
+// Critical intensity Port Scan (full port bombardment)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'port_scan',
+    target: '192.168.1.1',
+    intensity: 'critical'
+  })
+})
+
+Malware
+// Low intensity Malware (simple infection)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'malware',
+    target: '192.168.1.1',
+    intensity: 'low'
+  })
+})
+
+// Medium intensity Malware (standard infection)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'malware',
+    target: '192.168.1.1',
+    intensity: 'medium'
+  })
+})
+
+// High intensity Malware (advanced infection)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'malware',
+    target: '192.168.1.1',
+    intensity: 'high'
+  })
+})
+
+// Critical intensity Malware (severe infection)
+fetch('/launch_attack', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json'},
+  body: JSON.stringify({
+    attack_type: 'malware',
+    target: '192.168.1.1',
+    intensity: 'critical'
+  })
+})
